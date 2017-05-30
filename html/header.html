@@ -1,0 +1,107 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    <html>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Sentiment Analysis</title>
+        <link rel="icon" type="image/jpg" href="./img/favicon.png" />
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="./js/jquery-1.12.3.js"></script>
+        <script type="text/javascript" src="./js/jquery-migrate-1.2.1.js"></script>
+        <script type="text/javascript" src="./js/bootstrap.js"></script>
+        <script type="text/javascript" src="./js/moment.min.js"></script>
+        <script type="text/javascript" src="./js/flipclock.min.js"></script>
+        <script type="text/javascript" src="./js/slick.js"></script>
+        <script type="text/javascript" src="./js/daterangepicker.js"></script>
+        <script type="text/javascript" src="./js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="./js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+        <script type="text/javascript" src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script type="text/javascript" src="./js/rater.js"></script>
+        <script type="text/javascript" src="./js/my.js"></script>
+        <link rel="stylesheet" href="./css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="./css/dataTables.bootstrap.min.css" />
+        <link rel="stylesheet" href="./css/slick.css">
+        <link rel="stylesheet" type="text/css" href="./css/flipclock.css" />
+        <link rel="stylesheet" type="text/css" href="./css/daterangepicker.css" />
+        <link rel="stylesheet" href="./css/slick-theme.css">
+        <link rel="stylesheet" href="./css/my.css">
+    </head>
+
+    <body>
+        <div id="wrap">
+            <nav class="navbar navbar-inverse navbar-fixed-top navbar-vcc">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#"> <img style="max-width: 100px; margin-top: -22px;" class="img-circle" alt="Brand" src="./img/icon-sentiment.png">
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="http://10.3.24.83:8080/kumintest/home.jsp">Home</a></li>
+                            <li><a href="http://10.3.24.83:8080/kumintest/SearchSentiment?keyword=mobifone&daterange=2016-03-01+-+2016-03-31">Statistic
+							Sentiment</a></li>
+                            <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Statistic Sentiment Keyword<span
+							class="caret"></span></a>
+                                <ul class="dropdown-menu drop-kumin">
+                                    <li><a href="http://10.3.24.83:8080/kumintest/StatisticSentiment?keyword=vnpt&daterange=2016-03-01+-+2016-03-31">SA
+									Keyword</a></li>
+                                    <li><a href="http://10.3.24.83:8080/kumintest/checkfeedback.jsp">Check
+									Feedback</a></li>
+                                    <li role="separator" class="divider"></li>
+                                </ul>
+                            </li>
+                            <li><a href="http://10.3.24.83:8080/kumintest/inputform.jsp">SA
+							Text</a></li>
+                            <li><a href="http://10.3.24.83:8080/kumintest/sentimentaspect.jsp">Aspect
+							Sentiment</a></li>
+                            <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brand Relevant<span class="caret"></span></a>
+                                <ul class="dropdown-menu drop-kumin">
+                                    <li><a href="http://10.3.24.83:8080/kumintest/brandrelevant.jsp">Show
+									Brand</a></li>
+                                    <li><a href="http://10.3.24.83:8080/kumintest/fixbrandrelevant.jsp">Fix
+									Data</a></li>
+                                    <li role="separator" class="divider"></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Crawler<span class="caret"></span></a>
+                                <ul class="dropdown-menu drop-kumin">
+                                    <li><a href="http://10.3.24.83:8080/kumintest/crawlmonitor.jsp">Data
+									Crawler</a></li>
+                                    <li><a href="http://10.3.24.83:8080/kumintest/servermonitor.jsp">Server
+									Monitor</a></li>
+                                    <li role="separator" class="divider"></li>
+                                </ul>
+                            </li>
+                            <li><a href="http://10.3.24.83:8080/kumintest/coming.jsp">Chunking
+							VN</a></li>
+                            <li><a href="http://10.3.24.83:8080/kumintest/about.jsp">About
+							US</a></li>
+                        </ul>
+                        <%
+					String keyword = request.getParameter("keyword");
+					String daterange = request.getParameter("daterange");
+				%>
+                            <form class="navbar-form navbar-right" method="get" action="StatisticSentiment">
+                                <div class="form-group">
+                                    <input class="form-control nav-input" placeholder="Keyword" type="text" name="keyword" value="<%if (keyword != null) {%><%=keyword%><%}%>">
+                                </div>
+                                <input class="pull-right form-control nav-input" type="text" name="daterange" value="" placeholder="01-01-2016-01-31-2016" value="<%if (daterange != null) {%><%=daterange%><%}%>" />
+                                <script type="text/javascript">
+                                $(function() {
+                                    $('input[name="daterange"]').daterangepicker({
+                                        locale: {
+                                            format: 'YYYY-MM-DD'
+                                        }
+                                    });
+                                });
+                                </script>
+                                <button type="submit" class="btn btn-link">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </form>
+                    </div>
+                </div>
+            </nav>
