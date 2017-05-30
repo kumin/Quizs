@@ -1,37 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-    <html>
-
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Sentiment Analysis</title>
-        <link rel="icon" type="image/jpg" href="./img/favicon.png" />
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript" src="./js/jquery-1.12.3.js"></script>
-        <script type="text/javascript" src="./js/jquery-migrate-1.2.1.js"></script>
-        <script type="text/javascript" src="./js/bootstrap.js"></script>
-        <script type="text/javascript" src="./js/moment.min.js"></script>
-        <script type="text/javascript" src="./js/flipclock.min.js"></script>
-        <script type="text/javascript" src="./js/slick.js"></script>
-        <script type="text/javascript" src="./js/daterangepicker.js"></script>
-        <script type="text/javascript" src="./js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="./js/dataTables.bootstrap.min.js"></script>
-        <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
-        <script type="text/javascript" src="https://code.highcharts.com/modules/exporting.js"></script>
-        <script type="text/javascript" src="./js/rater.js"></script>
-        <script type="text/javascript" src="./js/my.js"></script>
-        <link rel="stylesheet" href="./css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="./css/dataTables.bootstrap.min.css" />
-        <link rel="stylesheet" href="./css/slick.css">
-        <link rel="stylesheet" type="text/css" href="./css/flipclock.css" />
-        <link rel="stylesheet" type="text/css" href="./css/daterangepicker.css" />
-        <link rel="stylesheet" href="./css/slick-theme.css">
-        <link rel="stylesheet" href="./css/my.css">
-    </head>
-
-    <body>
-        <div id="wrap">
+            <div id="wrap">
             <nav class="navbar navbar-inverse navbar-fixed-top navbar-vcc">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -80,10 +50,6 @@
                             <li><a href="http://10.3.24.83:8080/kumintest/about.jsp">About
 							US</a></li>
                         </ul>
-                        <%
-					String keyword = request.getParameter("keyword");
-					String daterange = request.getParameter("daterange");
-				%>
                             <form class="navbar-form navbar-right" method="get" action="StatisticSentiment">
                                 <div class="form-group">
                                     <input class="form-control nav-input" placeholder="Keyword" type="text" name="keyword" value="<%if (keyword != null) {%><%=keyword%><%}%>">
